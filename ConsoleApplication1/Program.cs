@@ -30,6 +30,11 @@ namespace ConsoleApplication1
             }
             return true;
         }
+        /// <summary>
+        /// Metoda ispituje da li su u zadanom nizu svi pozitivni brojevi
+        /// </summary>
+        /// <param name="brojevi">zahtjeva cjelobrojni niz kao parametar</param>
+        /// <returns>vraca istinitosnu vrijednost True/False</returns>
         static bool sviPozitivni(int[] brojevi){
 
             foreach(int broj in brojevi)
