@@ -24,7 +24,7 @@ gettera iz properties)*/
 
 namespace Tut1zad2
 {
-
+    //Autor: Almir Garic(almir.garic.1992@ieee.org)
     /// <summary>
     /// Glavna klasa program
     /// </summary>
