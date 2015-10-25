@@ -42,7 +42,8 @@ namespace Tut1SRzad3
                     }
                 }
             }
-
+            Console.WriteLine();
+            Console.WriteLine("sortiran niz bubble sortom");
             //ispis niza
             for (int i = 0; i < arr.Length; i++)
                 Console.Write(arr[i] + " ");
@@ -56,11 +57,36 @@ namespace Tut1SRzad3
         /// <param name="element">element koji se izbacuje iz niza</param>
         private static void izbaciElementNiza(int[] arr, int element)
         {
+           
+                //alociramo novi niz koji je za jedan element manji
+                int[] noviArr = new int[arr.Length - 1];
 
+                // dodajem jos jedan brojac j u postavke for petlje
+                for(int i=0,j=0;i<noviArr.Length;i++,j++)
+                {
+                    if (element-i==0)
+                    {
+                        j++;
+
+                    }
+                    noviArr[i]=arr[j];
+                }
+
+                Console.WriteLine("novi niz bez elementa sa indeksom {0} ", element);
+                //ispisujemo novi niz bez elementa
+                for (int i=0;i<noviArr.Length;i++)
+                {
+                    Console.Write(noviArr[i] + " ");
+                }
             
-            }
+            
+            
         }
         
+        /// <summary>
+        /// Main metoda
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             
@@ -70,7 +96,7 @@ namespace Tut1SRzad3
 
             //alociramo niz od n brojeva
             int[] niz = new int[n];
-            Console.WriteLine("Unesite n elemenata u niz");
+            Console.WriteLine("Unesite n elemenata u niz odvojenih zarezom");
 
             //unosimo string brojeva razdvojenih zarezom
             string ulaz = Console.ReadLine();
@@ -83,6 +109,9 @@ namespace Tut1SRzad3
                 niz[i] = Convert.ToInt32(Niz[i]);
             }
 
+            //testiramo funkcije
+            izbaciElementNiza(niz,2);
+            bubbleSortNiz(niz);
             
             Console.ReadLine();
 
