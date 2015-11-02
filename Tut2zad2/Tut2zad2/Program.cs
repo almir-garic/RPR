@@ -172,14 +172,17 @@ namespace Tut2PRzad2
         class LuksuzniStan : Stan
         {
             Uposlenik osoba;
-            public LuksuzniStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, Uposlenik pOsoba) : base(brojKvadrata,lokacija,imaInternet)
+            public LuksuzniStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, Uposlenik pOsoba)
             {
+                BrojKvadrata = brojKvadrata;
+                Lokacija = lokacija;
+                ImaInternetKonekcije = imaInternet;
                 osoba = pOsoba;
             }
 
             public override void Ispisi()
             {
-                Console.WriteLine(BrojKvadrata+" "+Lokacija+" "+" Luksuzan "+((ImaInternetKonekcije)?"Da":"Ne")));
+                Console.WriteLine(BrojKvadrata+" "+Lokacija+" "+" Luksuzan "+((ImaInternetKonekcije)?"Da":"Ne"));
             }
             public override double ObracunajCijenuNajma()
             {
@@ -188,13 +191,14 @@ namespace Tut2PRzad2
                 {
                     cijena += 0.02f * cijena;
                 }
+                return cijena;
             }
         }
 
-        class Datum
+       public class Datum
         {
             int dan;
-            void int Dan
+            public int Dan
             {
                 get { return dan; }
                 private set
@@ -208,7 +212,7 @@ namespace Tut2PRzad2
                 } // private set-ne moze se pristupiti izvan klase
             }
             int mjesec;
-            void int Mjesec
+            public int Mjesec
             {
                 get { return mjesec; }
                 private set
@@ -227,7 +231,7 @@ namespace Tut2PRzad2
                 }
             }
             int godina;
-            void int Godina
+           public int Godina
             {
                 get { return godina; }
                 private set { mjesec = value; }
@@ -242,45 +246,118 @@ namespace Tut2PRzad2
                 Console.WriteLine("Datum-konstruktor {0}", this);
             }
 
-            void string ToString()
+            public string Ispis()
             {
                 return string.Format("{0}/{1}/{2}", Dan, Mjesec, Godina);
             }
 
         }
-        class Uposlenik
+        public abstract class Uposlenik
         {
             string ime;
-            void string Ime
+            public string Ime
             {
                 get { return ime; }
                 set { ime = value; }
             }
             string prezime;
-            void string Prezime
+           public string Prezime
             {
                 get { return prezime; }
                 set { prezime = value; }
             }
-            decimal mjesecnaPlata;
-            void decimal MjesecnaPlata
-            {
-                get { return mjesecnaPlata; }
-                set { mjesecnaPlata = value; }
-            }
-            Datum datumUposlenja;
+            
+           
             //konstruktor za uposlenik
             public Uposlenik(string ime,string prezime,Datum pDatumUposlenja,decimal mjesecnaPlata)
             {
                 Ime = ime;
                 Prezime = prezime;
-                datumUposlenja = pDatumUposlenja;
-                MjesecnaPlata = mjesecnaPlata;
+                
             }
-            public override string ToString()
-            {
-                return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
+            public abstract override string ToString();
+            public abstract decimal IznosPlacanja();
+            
 
+            class Batler:Uposlenik
+            {
+                Datum datumUposlenja;
+                decimal mjesecnaPlata;
+                
+                public decimal MjesecnaPlata
+                {
+                    get { return mjesecnaPlata; }
+                    set { mjesecnaPlata = value; }
+                }
+                public Batler(string ime,string prezime,Datum pDatumUposlenja,decimal mjesecnaPlata):base(Ime,Prezime)
+                {
+                    
+                    datumUposlenja = pDatumUposlenja;
+                    MjesecnaPlata = mjesecnaPlata;
+                }
+
+                public override string ToString()
+                {
+                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
+
+                }
+                public override decimal IznosPlacanja()
+                {
+                    return MjesecnaPlata;
+                }
+            }
+            class Kuhar:Uposlenik
+            { 
+
+                 Datum datumUposlenja;
+                decimal mjesecnaPlata;
+                
+                public decimal MjesecnaPlata
+                {
+                    get { return mjesecnaPlata; }
+                    set { mjesecnaPlata = value; }
+                }
+
+                public Kuhar(string pime,string pprezime,Datum pDatumUposlenja,decimal mjesecnaPlata) : base(Ime,Prezime)
+                {
+                    
+                    datumUposlenja = pDatumUposlenja;
+                    MjesecnaPlata = mjesecnaPlata;
+                }
+                public override string ToString()
+                {
+                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
+
+                }
+                public override decimal IznosPlacanja()
+                {
+                    return MjesecnaPlata;
+                }
+            }
+            class Vrtlar:Uposlenik
+            {
+                 Datum datumUposlenja;
+                 decimal mjesecnaPlata;
+                public decimal MjesecnaPlata
+                {
+                    get { return mjesecnaPlata; }
+                    set { mjesecnaPlata = value; }
+                }
+                public Vrtlar(string ime,string prezime,Datum pDatumUposlenja,decimal pMjesecnaPlata) : base(Ime,Prezime)
+                {
+                    
+                    datumUposlenja = pDatumUposlenja;
+                    MjesecnaPlata = pMjesecnaPlata;
+                }
+                public override string ToString()
+                {
+                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime,datumUposlenja,MjesecnaPlata);
+
+                }
+                public override decimal IznosPlacanja()
+                {
+                    return MjesecnaPlata;
+                }
             }
         }
 
