@@ -52,12 +52,37 @@ namespace Tut1SRzad6
             
         }
 
+        public int NadjiPodstring(string s1, string s2)
+        {
+            char[] niz = s2.ToCharArray();
+            char[] noviNiz = new char[niz.Length];
+            for (int i = 0, brojac = 0; i < niz.Length; i++)
+            {
+
+                if (niz[i] == ' ')
+                {
+                    continue;
+                }
+
+                else { noviNiz[brojac++] += niz[i]; };
+
+            }
+            var noviString = new string(noviNiz);
+
+            string traziUovomStringu = noviString;
+            string traziOvajstring = s1;
+
+            int prviKarakter = traziUovomStringu.IndexOf(traziOvajstring);
+            if (prviKarakter > 0) { return prviKarakter-1; }
+            return -1;
+        }
         static void Main(string[] args)
         {
             Program a=new Program();
             var s = a.IzbrisiPodstring("rijexyzc", "xyz");
            Console.WriteLine(s);
-
+            var r = a.NadjiPodstring("lijep", "danas je lijep dan");
+            Console.WriteLine(r);
             Console.ReadKey();
         }
     }
