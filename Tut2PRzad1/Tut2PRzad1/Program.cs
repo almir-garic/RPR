@@ -50,21 +50,21 @@ namespace Tut2PRzad1
             public int BrojKvadrata
             {
                 get { return brojKvadrata; }
-                set { value = brojKvadrata; }
+                set { brojKvadrata=value; }
             }
             Lokacija lokacija;
 
             public Lokacija Lokacija
             {
                 get { return lokacija; }
-                set { value = lokacija; }
+                set { lokacija=value; }
             }
             bool imaInternetKonekcije;
 
             public bool ImaInternetKonekcije
             {
                 get { return imaInternetKonekcije; }
-                set { value = imaInternetKonekcije; }
+                set { imaInternetKonekcije=value; }
             }
 
             //abstraktne metode klase Stan
