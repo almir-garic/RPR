@@ -16,12 +16,57 @@ namespace Tut1SRzad4
 {
     class Program
     {
+       
         static void Main(string[] args)
         {
+            
+            Console.WriteLine("Unesite prirodan broj n ");
+            string s = Console.ReadLine();
+            int n = Int32.Parse(s);
+
+           
+            //A jagged array is an array whose elements are arrays
+
+            //deklaracija matrice
+            int[][] matrica = new int[n][];
+            for(int i=0;i< n; i++)
+            {
+                matrica[i] = new int[n];
+            }
+            //inicijalizacija elemenata na nulu
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+
+                    matrica[i][j] = 0;
+                }
+            }
+
+            //inicijalizacija matrice
+            for (int i=0;i<n;i++)
+            {
+                for(int j=0;j<n;j++)
+                {
+                    Console.WriteLine("Unesi a{0}{0} clan matrice",i+1,j+1);
+                    
+                    matrica [i][j] =Int32.Parse(Console.ReadLine());
+                }
+            }
+
+           
+
+            
+            // 
+            // Console.WriteLine("Redni broj kolone sa max clanovima je : "+ redniBrojKoloneSaMaxSumomElemenata);
+            // Console.WriteLine("Redni Broj Kolone sa Min Sumom Elemenata je : " + redniBrojKoloneSaMinSumomElemenata);
+            // Console.WriteLine("Suma Dijagonalih elemenata je : " + sumaDijagonalnihElemenata);
+
+            Console.ReadLine();
         }
     }
 }
 
 
 
-}
+
