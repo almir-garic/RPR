@@ -180,28 +180,55 @@ namespace Tut2PRzad2
             void int Dan
             {
                 get { return dan; }
-                set { dan = value; }
+                private set
+                {
+                    if(dan>0 && dan<=31) dan = value;
+                    else
+                    {
+                        Console.WriteLine("Ne validan dan({0}) postavi na 1.", value);
+                        dan = 1;
+                    }
+                } // private set-ne moze se pristupiti izvan klase
             }
             int mjesec;
             void int Mjesec
             {
                 get { return mjesec; }
-                set { mjesec = value; }
+                private set
+                {
+                    if(value>0 && value <= 12)
+                    {
+                        mjesec = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ne validan mjesec({0}) postavi na 1.", value);
+                        mjesec = 1;
+                        
+                    }
+                    
+                }
             }
             int godina;
             void int Godina
             {
                 get { return godina; }
-                set { mjesec = value; }
+                private set { mjesec = value; }
             }
 
+            // konstruktor: koristi get i set za validaciju dana,godine i mjeseca
            public Datum(int dan,int mjesec,int godina)
             {
                 Dan = dan;
                 Mjesec = mjesec;
                 Godina = godina;
+                Console.WriteLine("Datum-konstruktor {0}", this);
             }
 
+            void string ToString()
+            {
+                return string.Format("{0}/{1}/{2}", Dan, Mjesec, Godina);
+            }
 
         }
         apstract class Osoblje:Datum
@@ -219,10 +246,7 @@ namespace Tut2PRzad2
                 set { prezime = value; }
             }
             Datum datumUposlenja;
-            void Datum DatumUposlenja
-                {
-                    
-                }
+            
 decimal mjesecnaPlata;
 
 void decimal MjesecnaPlata
