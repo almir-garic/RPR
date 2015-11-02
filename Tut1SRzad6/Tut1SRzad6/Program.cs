@@ -34,21 +34,22 @@ namespace Tut1SRzad6
             char[] niz2 = s2.ToCharArray();
 
             char[] noviNiz = new char[s1.Length];
-            for (int i = 1; i < niz1.Length; i++)
+            for (int i = 0,brojac=0; i < niz1.Length; i++)
             {
                 for (int j = 0; j < niz2.Length; j++)
                 {
-                    if (niz1[i]!= niz2[j])
+                    if (niz1[i]== niz2[j])
                     {
-                        j++;
+                        i++;
                     }  
                 }
-                noviNiz[i]=
-            }
-            string noviString;
-            noviString = new string(noviNiz);
+                noviNiz[brojac++] = niz1[i];
 
+            }
+            
+            var noviString= new string(noviNiz);
             return noviString;
+            
         }
 
         static void Main(string[] args)
