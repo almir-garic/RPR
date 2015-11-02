@@ -194,7 +194,10 @@ namespace Tut2PRzad2
                 return cijena;
             }
         }
-
+        interface IPlacanje
+        {
+            decimal IznosPlacanja();
+        }
        
         public class Datum
         {
@@ -253,7 +256,7 @@ namespace Tut2PRzad2
             }
 
         }
-        public abstract class Uposlenik
+        public abstract class Uposlenik:IPlacanje
         {
            private string ime;
             public string Ime
