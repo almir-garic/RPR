@@ -207,19 +207,19 @@ namespace Tut2PRzad2
                 get { return dan; }
                 private set
                 {
-                    if (dan > 0 && dan <= 31) dan = value;
-                    else
+                    /*if (dan > 0 && dan <= 31)*/ dan = value;
+                    /*else
                     {
                         Console.WriteLine("Ne validan dan({0}) postavi na 1.", value);
                         dan = 1;
-                    }
-                } // private set-ne moze se pristupiti izvan klase
+                    }*/
+                } 
             }
             int mjesec;
             public int Mjesec
             {
                 get { return mjesec; }
-                private set
+               private set
                 {
                     if (value > 0 && value <= 12)
                     {
@@ -247,7 +247,7 @@ namespace Tut2PRzad2
                 Dan = dan;
                 Mjesec = mjesec;
                 Godina = godina;
-                Console.WriteLine("Datum-konstruktor {0}", this);
+                
             }
 
             public string ToString()
@@ -394,7 +394,7 @@ namespace Tut2PRzad2
             Uposlenik Vrtlar= new Uposlenik.Vrtlar("vrtlarIme", "vrtlarPrezime", datum2, 800);
             Uposlenik Kuhar= new Uposlenik.Kuhar("kuharIme", "kuharPrezime", datum3, 1600);
 
-            Stan[] stanovi = new Stan[8];
+            Stan[] stanovi = new Stan[7];
             stanovi[0] = new NenamjestenStan(50, Lokacija.Gradsko, true);
             stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
             stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
