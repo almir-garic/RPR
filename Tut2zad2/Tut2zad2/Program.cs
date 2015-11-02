@@ -171,7 +171,24 @@ namespace Tut2PRzad2
 
         class LuksuzniStan : Stan
         {
-            public LuksuzniStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, Osoblje osoba) : base(int brojKvadrata, Lokacija lokacija, bool imaInternet)
+            Uposlenik osoba;
+            public LuksuzniStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, Uposlenik pOsoba) : base(brojKvadrata,lokacija,imaInternet)
+            {
+                osoba = pOsoba;
+            }
+
+            public override void Ispisi()
+            {
+                Console.WriteLine(BrojKvadrata+" "+Lokacija+" "+" Luksuzan "+((ImaInternetKonekcije)?"Da":"Ne")));
+            }
+            public override double ObracunajCijenuNajma()
+            {
+                double cijena = 1500;//osnovna cijena luksuznog stana
+                if ((ImaInternetKonekcije))
+                {
+                    cijena += 0.02f * cijena;
+                }
+            }
         }
 
         class Datum
@@ -231,7 +248,7 @@ namespace Tut2PRzad2
             }
 
         }
-        apstract class Osoblje:Datum
+        class Uposlenik
         {
             string ime;
             void string Ime
@@ -245,16 +262,26 @@ namespace Tut2PRzad2
                 get { return prezime; }
                 set { prezime = value; }
             }
+            decimal mjesecnaPlata;
+            void decimal MjesecnaPlata
+            {
+                get { return mjesecnaPlata; }
+                set { mjesecnaPlata = value; }
+            }
             Datum datumUposlenja;
-            
-decimal mjesecnaPlata;
+            //konstruktor za uposlenik
+            public Uposlenik(string ime,string prezime,Datum pDatumUposlenja,decimal mjesecnaPlata)
+            {
+                Ime = ime;
+                Prezime = prezime;
+                datumUposlenja = pDatumUposlenja;
+                MjesecnaPlata = mjesecnaPlata;
+            }
+            public override string ToString()
+            {
+                return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
 
-void decimal MjesecnaPlata
-{
-    get { return mjesecnaPlata; }
-    set { mjesecnaPlata = value; }
-}
-
+            }
         }
 
         static void Main(string[] args)
