@@ -177,12 +177,34 @@ namespace Tut2PRzad2
         class Datum
         {
             int dan;
+            void int Dan
+            {
+                get { return dan; }
+                set { dan = value; }
+            }
             int mjesec;
+            void int Mjesec
+            {
+                get { return mjesec; }
+                set { mjesec = value; }
+            }
             int godina;
+            void int Godina
+            {
+                get { return godina; }
+                set { mjesec = value; }
+            }
+
+           public Datum(int dan,int mjesec,int godina)
+            {
+                Dan = dan;
+                Mjesec = mjesec;
+                Godina = godina;
+            }
 
 
         }
-        apstract class Osoblje
+        apstract class Osoblje:Datum
         {
             string ime;
             void string Ime
@@ -199,9 +221,8 @@ namespace Tut2PRzad2
             Datum datumUposlenja;
             void Datum DatumUposlenja
                 {
-                    get{return datumUposlenja;}
-        set{datumUposlenja=value;}
-}
+                    
+                }
 decimal mjesecnaPlata;
 
 void decimal MjesecnaPlata
