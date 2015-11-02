@@ -40,9 +40,20 @@ namespace Tut2PRzad1
         enum Lokacija { Gradsko = 1, Prigradsko = 2 };
 
         /// <summary>
+        /// Interface Istan
+        /// </summary>
+        interface IStan
+        {
+           // int BrojKvadrata { get; set; }
+            //Lokacija Lokacija { get; set; }
+            //bool ImaInternetKonekcije { get; set; }
+            void Ispisi();
+            double ObracunajCijenuNajma();
+        }
+        /// <summary>
         /// abstraktna klasa Stan
         /// </summary>
-        abstract class Stan
+        abstract class Stan:IStan
         {
             // atributi abstraktne klase sa njihovih osobinama
             int brojKvadrata;
@@ -71,6 +82,7 @@ namespace Tut2PRzad1
             public abstract void Ispisi();
             public abstract double ObracunajCijenuNajma();
 
+          
         }
         class NenamjestenStan : Stan
         {
