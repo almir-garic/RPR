@@ -186,7 +186,7 @@ namespace Tut2PRzad2
             }
             public override double ObracunajCijenuNajma()
             {
-                double cijena = 1500;//osnovna cijena luksuznog stana
+                double cijena = 1500+ (double)osoba.IznosPlacanja();//osnovna cijena luksuznog stana
                 if ((ImaInternetKonekcije))
                 {
                     cijena += 0.02f * cijena;
@@ -250,7 +250,7 @@ namespace Tut2PRzad2
                 Console.WriteLine("Datum-konstruktor {0}", this);
             }
 
-            public string Ispis()
+            public string ToString()
             {
                 return string.Format("{0}/{1}/{2}", Dan, Mjesec, Godina);
             }
