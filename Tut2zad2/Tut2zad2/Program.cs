@@ -195,7 +195,8 @@ namespace Tut2PRzad2
             }
         }
 
-       public class Datum
+       
+        public class Datum
         {
             int dan;
             public int Dan
@@ -254,22 +255,22 @@ namespace Tut2PRzad2
         }
         public abstract class Uposlenik
         {
-            string ime;
+           private string ime;
             public string Ime
             {
                 get { return ime; }
-                set { ime = value; }
+               private set { ime = value; }
             }
-            string prezime;
+           private string prezime;
            public string Prezime
             {
                 get { return prezime; }
-                set { prezime = value; }
+                private set { prezime = value; }
             }
             
            
             //konstruktor za uposlenik
-            public Uposlenik(string ime,string prezime,Datum pDatumUposlenja,decimal mjesecnaPlata)
+            public Uposlenik(string ime,string prezime)
             {
                 Ime = ime;
                 Prezime = prezime;
@@ -277,10 +278,11 @@ namespace Tut2PRzad2
             }
             public abstract override string ToString();
             public abstract decimal IznosPlacanja();
-            
+
 
             class Batler:Uposlenik
             {
+                
                 Datum datumUposlenja;
                 decimal mjesecnaPlata;
                 
@@ -289,7 +291,7 @@ namespace Tut2PRzad2
                     get { return mjesecnaPlata; }
                     set { mjesecnaPlata = value; }
                 }
-                public Batler(string ime,string prezime,Datum pDatumUposlenja,decimal mjesecnaPlata):base(Ime,Prezime)
+                public Batler(string pime,string pprezime,Datum pDatumUposlenja,decimal mjesecnaPlata):base(pime,pprezime)
                 {
                     
                     datumUposlenja = pDatumUposlenja;
@@ -307,8 +309,8 @@ namespace Tut2PRzad2
                 }
             }
             class Kuhar:Uposlenik
-            { 
-
+            {
+                
                  Datum datumUposlenja;
                 decimal mjesecnaPlata;
                 
@@ -318,7 +320,7 @@ namespace Tut2PRzad2
                     set { mjesecnaPlata = value; }
                 }
 
-                public Kuhar(string pime,string pprezime,Datum pDatumUposlenja,decimal mjesecnaPlata) : base(Ime,Prezime)
+                public Kuhar(string pime,string pprezime,Datum pDatumUposlenja,decimal mjesecnaPlata) : base(pime,pprezime)
                 {
                     
                     datumUposlenja = pDatumUposlenja;
@@ -336,6 +338,7 @@ namespace Tut2PRzad2
             }
             class Vrtlar:Uposlenik
             {
+                
                  Datum datumUposlenja;
                  decimal mjesecnaPlata;
                 public decimal MjesecnaPlata
@@ -343,7 +346,7 @@ namespace Tut2PRzad2
                     get { return mjesecnaPlata; }
                     set { mjesecnaPlata = value; }
                 }
-                public Vrtlar(string ime,string prezime,Datum pDatumUposlenja,decimal pMjesecnaPlata) : base(Ime,Prezime)
+                public Vrtlar(string pime,string pprezime,Datum pDatumUposlenja,decimal pMjesecnaPlata) : base(pime,pprezime)
                 {
                     
                     datumUposlenja = pDatumUposlenja;
