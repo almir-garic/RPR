@@ -30,13 +30,14 @@ Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata
 3. 40 prigradsko namješten Da 2000 2
 4. 80 gradsko namješten Ne 3000 6
 Klijent agencije Stan unosi da želi stan čija površina je u rangu 60-90, prikazuju se stan 2 i 4. Cijena najma
-za stanove je respektivno 234,6 i 640. 
+za stanove je respektivno 234,6 i 640. 
+
 */
 namespace Tut2PRzad1
 {
     class Program
     {
-        enum Lokacija { Gradsko=1,Prigradsko=2 };
+        enum Lokacija { Gradsko = 1, Prigradsko = 2 };
 
         /// <summary>
         /// abstraktna klasa Stan
@@ -70,83 +71,120 @@ namespace Tut2PRzad1
             public abstract void Ispisi();
             public abstract double ObracunajCijenuNajma();
 
-            class NenamjesteStan : Stan
+        }
+        class NenamjestenStan : Stan
+        {
+            public override void Ispisi()
             {
-                public override void Ispisi()
+                Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Nenamjesten " + ((ImaInternetKonekcije) ? "Da" : "Ne"));
+            }
+            public override double ObracunajCijenuNajma()
+            {
+                double cijena = (Lokacija == Lokacija.Gradsko) ? 200 : 150;
+                cijena += BrojKvadrata;
+                if (ImaInternetKonekcije)
                 {
-                    Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Nenamjesten " + (ImaInternetKonekcije) ? "Da" : "Ne");
+                    cijena += 0.02f * cijena;
                 }
-                public override double ObracunajCijenuNajma()
-                {
-                    double cijena = (Lokacija == Lokacija.Gradsko) ? 200 : 150;
-                    cijena += BrojKvadrata;
-                    if (ImaInternetKonekcije)
-                    {
-                        cijena += 0.02f * cijena;
-                    }
-                    return cijena;
-                }
+                return cijena;
+            }
 
-                //Konstruktor
-                public NenamjesteStan(int brojKvadrata,Lokacija lokacija,bool imaInternet)
-                {
-                    BrojKvadrata = brojKvadrata;
-                    Lokacija = lokacija;
-                    ImaInternetKonekcije = imaInternet;
-                }
-                class NamjestenStan : Stan
-                {
-                    double cijenaNamjestana;
-                    public double CijenaNamjestaja
-                    {
-                        get { return cijenaNamjestana; }
-                        set { value = cijenaNamjestana; }
-                    }
-                    int brojKucanskihAparata;
-                    public double BrojKucanskihAparata
-                    {
-                        get { return brojKucanskihAparata; }
-                        set { value = brojKucanskihAparata; }
-                    }
-
-                    public NamjestenStan(int brojKvadrata,Lokacija lokacija,bool imaInternet,double cijena,int brojApartmana)
-                    {
-                        BrojKvadrata = brojKvadrata;
-                        Lokacija = lokacija;
-                        ImaInternetKonekcije = imaInternet;
-                        this.cijenaNamjestana = cijena;
-                        this.brojKucanskihAparata = brojApartmana;
-                    }
-
-                    public override void Ispisi()
-                    {
-                        Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Namjesten " +
-                       ((ImaInternetKonekcija) ? "Da" : "Ne") + " " + CijenaNamjestaja + " " +
-                       BrojKucanskihAparata);
-                    }
-                    public override double ObracunajCijenuNajma()
-                    {
-                        double cijena = (Lokacija == Lokacija.Gradsko) ? 200 : 150;
-                        cijena += BrojKvadrata;
-                        if (ImaInternetKonekcija)
-                        {
-                            cijena += 0.01f * cijena;
-                        }
-                        if (brojKucanskihAparata < 3)
-                        {
-                            cijena += 0.01f * CijenaNamjestaja * BrojKucanskihAparata;
-                        }
-                        else
-                        {
-                            cijena += 0.02f * CijenaNamjestaja * BrojKucanskihAparata;
-                        }
-                        return cijena;
-                    }
-                }
+            //Konstruktor
+            public NenamjestenStan(int brojKvadrata, Lokacija lokacija, bool imaInternet)
+            {
+                BrojKvadrata = brojKvadrata;
+                Lokacija = lokacija;
+                ImaInternetKonekcije = imaInternet;
             }
         }
+        class NamjestenStan : Stan
+        {
+            double cijenaNamjestana;
+            public double CijenaNamjestaja
+            {
+                get { return cijenaNamjestana; }
+                set { value = cijenaNamjestana; }
+            }
+            int brojKucanskihAparata;
+            public double BrojKucanskihAparata
+            {
+                get { return brojKucanskihAparata; }
+                set { value = brojKucanskihAparata; }
+            }
+
+            public NamjestenStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, double cijena, int brojApartmana)
+            {
+                BrojKvadrata = brojKvadrata;
+                Lokacija = lokacija;
+                ImaInternetKonekcije = imaInternet;
+                this.cijenaNamjestana = cijena;
+                this.brojKucanskihAparata = brojApartmana;
+            }
+
+            public override void Ispisi()
+            {
+                Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Namjesten " +
+               ((ImaInternetKonekcije) ? "Da" : "Ne") + " " + CijenaNamjestaja + " " +
+               BrojKucanskihAparata);
+            }
+            public override double ObracunajCijenuNajma()
+            {
+                double cijena = (Lokacija == Lokacija.Gradsko) ? 200 : 150;
+                cijena += BrojKvadrata;
+                if (ImaInternetKonekcije)
+                {
+                    cijena += 0.01f * cijena;
+                }
+                if (brojKucanskihAparata < 3)
+                {
+                    cijena += 0.01f * CijenaNamjestaja * BrojKucanskihAparata;
+                }
+                else
+                {
+                    cijena += 0.02f * CijenaNamjestaja * BrojKucanskihAparata;
+                }
+                return cijena;
+            }
+        }
+
+
+
         static void Main(string[] args)
         {
+            Stan[] stanovi = new Stan[4];
+            stanovi[0] = new NenamjestenStan(50,Lokacija.Gradsko, true);
+            stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
+            stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
+            stanovi[3] = new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6);
+            Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
+
+            
+            foreach (Stan stan in stanovi)
+            {
+                stan.Ispisi();
+            }
+            int minPovrsina = 0;
+            int maxPovrsina = 0;
+            Console.WriteLine("Unesite minimalnu zeljenu povrsinu");
+                while(!Int32.TryParse(Console.ReadLine(),out minPovrsina) || minPovrsina < 0)
+                {
+                    Console.WriteLine("Unos nije ispravan");
+                }
+                Console.WriteLine("Unesite maksimalnu zeljenu povrsinu");
+                while(!Int32.TryParse(Console.ReadLine(),out maxPovrsina) || maxPovrsina < 0)
+                {
+                    Console.WriteLine("Unos nije ispravan");
+                }
+            foreach(Stan stan in stanovi)
+            {
+                if(stan.BrojKvadrata>=minPovrsina && stan.BrojKvadrata <= maxPovrsina)
+                {
+                    stan.Ispisi();
+                    Console.WriteLine("Ukupna cijena najma stana je {0:F2} ", stan.ObracunajCijenuNajma());
+                }
+            }
+            Console.ReadLine();
+
 
         }
     }
