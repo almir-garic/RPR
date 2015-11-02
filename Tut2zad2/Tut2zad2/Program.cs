@@ -182,7 +182,7 @@ namespace Tut2PRzad2
 
             public override void Ispisi()
             {
-                Console.WriteLine(BrojKvadrata+" "+Lokacija+" "+" Luksuzan "+((ImaInternetKonekcije)?"Da":"Ne"));
+                Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Luksuzan " + ((ImaInternetKonekcije) ? "Da" : "Ne"));
             }
             public override double ObracunajCijenuNajma()
             {
@@ -198,7 +198,7 @@ namespace Tut2PRzad2
         {
             decimal IznosPlacanja();
         }
-       
+
         public class Datum
         {
             int dan;
@@ -207,7 +207,7 @@ namespace Tut2PRzad2
                 get { return dan; }
                 private set
                 {
-                    if(dan>0 && dan<=31) dan = value;
+                    if (dan > 0 && dan <= 31) dan = value;
                     else
                     {
                         Console.WriteLine("Ne validan dan({0}) postavi na 1.", value);
@@ -221,7 +221,7 @@ namespace Tut2PRzad2
                 get { return mjesec; }
                 private set
                 {
-                    if(value>0 && value <= 12)
+                    if (value > 0 && value <= 12)
                     {
                         mjesec = value;
                     }
@@ -229,20 +229,20 @@ namespace Tut2PRzad2
                     {
                         Console.WriteLine("Ne validan mjesec({0}) postavi na 1.", value);
                         mjesec = 1;
-                        
+
                     }
-                    
+
                 }
             }
             int godina;
-           public int Godina
+            public int Godina
             {
                 get { return godina; }
-                private set { mjesec = value; }
+                private set { godina = value; }
             }
 
             // konstruktor: koristi get i set za validaciju dana,godine i mjeseca
-           public Datum(int dan,int mjesec,int godina)
+            public Datum(int dan, int mjesec, int godina)
             {
                 Dan = dan;
                 Mjesec = mjesec;
@@ -256,51 +256,95 @@ namespace Tut2PRzad2
             }
 
         }
-        public abstract class Uposlenik:IPlacanje
+        public abstract class Uposlenik : IPlacanje
         {
-           private string ime;
+            private string ime;
             public string Ime
             {
                 get { return ime; }
-               private set { ime = value; }
+                private set { ime = value; }
             }
-           private string prezime;
-           public string Prezime
+            private string prezime;
+            public string Prezime
             {
                 get { return prezime; }
                 private set { prezime = value; }
             }
-            
-           
+
+
             //konstruktor za uposlenik
-            public Uposlenik(string ime,string prezime)
+            public Uposlenik(string ime, string prezime)
             {
                 Ime = ime;
                 Prezime = prezime;
-                
+
             }
             public abstract override string ToString();
             public abstract decimal IznosPlacanja();
 
 
-            class Batler:Uposlenik
+            public class Batler : Uposlenik
             {
-                
+
+                Datum datumUposlenja;
+                int godineIskustva;
+                public int GodineIskustva
+                {
+                    get { return godineIskustva; }
+                    set { godineIskustva = value; }
+                }
+                decimal mjesecnaPlata;
+
+                public decimal MjesecnaPlata
+                {
+                    get { return mjesecnaPlata; }
+                    set { mjesecnaPlata = value; }
+                }
+                public Batler(string pime, string pprezime, Datum pDatumUposlenja, decimal mjesecnaPlata, int godineIskustva) : base(pime, pprezime)
+                {
+                    GodineIskustva = godineIskustva;
+                    datumUposlenja = pDatumUposlenja;
+                    MjesecnaPlata = mjesecnaPlata;
+                }
+
+                public override string ToString()
+                {
+                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
+
+                }
+                public override decimal IznosPlacanja()
+                {
+                    return MjesecnaPlata;
+                }
+            }
+            public class Kuhar : Uposlenik
+            {
+                string[] jela = new string[3] { "jelo1", "jelo2", "jelo3" };
+
+                //indekser
+
+                public string this[int indeks]
+                {
+                    get { return jela[indeks]; }
+                    set { jela[indeks] = value; }
+                }
+
                 Datum datumUposlenja;
                 decimal mjesecnaPlata;
-                
+
                 public decimal MjesecnaPlata
                 {
                     get { return mjesecnaPlata; }
                     set { mjesecnaPlata = value; }
                 }
-                public Batler(string pime,string pprezime,Datum pDatumUposlenja,decimal mjesecnaPlata):base(pime,pprezime)
+
+                public Kuhar(string pime, string pprezime, Datum pDatumUposlenja, decimal mjesecnaPlata) : base(pime, pprezime)
                 {
-                    
+
                     datumUposlenja = pDatumUposlenja;
                     MjesecnaPlata = mjesecnaPlata;
-                }
 
+                }
                 public override string ToString()
                 {
                     return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
@@ -311,53 +355,26 @@ namespace Tut2PRzad2
                     return MjesecnaPlata;
                 }
             }
-            class Kuhar:Uposlenik
+            public class Vrtlar : Uposlenik
             {
-                
-                 Datum datumUposlenja;
+
+                Datum datumUposlenja;
+                Stan stan = new NenamjestenStan(30, Lokacija.Prigradsko, true);
                 decimal mjesecnaPlata;
-                
                 public decimal MjesecnaPlata
                 {
                     get { return mjesecnaPlata; }
                     set { mjesecnaPlata = value; }
                 }
+                public Vrtlar(string pime, string pprezime, Datum pDatumUposlenja, decimal pMjesecnaPlata) : base(pime, pprezime)
+                {
 
-                public Kuhar(string pime,string pprezime,Datum pDatumUposlenja,decimal mjesecnaPlata) : base(pime,pprezime)
-                {
-                    
-                    datumUposlenja = pDatumUposlenja;
-                    MjesecnaPlata = mjesecnaPlata;
-                }
-                public override string ToString()
-                {
-                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
-
-                }
-                public override decimal IznosPlacanja()
-                {
-                    return MjesecnaPlata;
-                }
-            }
-            class Vrtlar:Uposlenik
-            {
-                
-                 Datum datumUposlenja;
-                 decimal mjesecnaPlata;
-                public decimal MjesecnaPlata
-                {
-                    get { return mjesecnaPlata; }
-                    set { mjesecnaPlata = value; }
-                }
-                public Vrtlar(string pime,string pprezime,Datum pDatumUposlenja,decimal pMjesecnaPlata) : base(pime,pprezime)
-                {
-                    
                     datumUposlenja = pDatumUposlenja;
                     MjesecnaPlata = pMjesecnaPlata;
                 }
                 public override string ToString()
                 {
-                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime,datumUposlenja,MjesecnaPlata);
+                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
 
                 }
                 public override decimal IznosPlacanja()
@@ -368,12 +385,23 @@ namespace Tut2PRzad2
         }
 
         static void Main(string[] args)
-{
-    Stan[] stanovi = new Stan[4];
-    stanovi[0] = new NenamjestenStan(50, Lokacija.Gradsko, true);
-    stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
-    stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
-    stanovi[3] = new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6);
+        {
+            Datum datum1 = new Datum(12, 10, 2015);
+            Datum datum2 = new Datum(13, 10, 2015);
+            Datum datum3 = new Datum(15, 10, 2015);
+            
+            Uposlenik Batler= new Uposlenik.Batler("batlerIme", "batlerPrezime", datum1, 1200, 15);
+            Uposlenik Vrtlar= new Uposlenik.Vrtlar("vrtlarIme", "vrtlarPrezime", datum2, 800);
+            Uposlenik Kuhar= new Uposlenik.Kuhar("kuharIme", "kuharPrezime", datum3, 1600);
+
+            Stan[] stanovi = new Stan[8];
+            stanovi[0] = new NenamjestenStan(50, Lokacija.Gradsko, true);
+            stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
+            stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
+            stanovi[3] = new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6);
+            stanovi[4] = new LuksuzniStan(200, Lokacija.Gradsko, true,Batler);
+            stanovi[5] = new LuksuzniStan(250, Lokacija.Gradsko, true, Kuhar);
+            stanovi[6] = new LuksuzniStan(300, Lokacija.Gradsko, true, Vrtlar);
     Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
 
 
