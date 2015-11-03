@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 //Autor : Almir Garic (almir.garic.1992@ieee.org)
 /*Zadatak 1
@@ -42,396 +39,65 @@ Za potrebe pregleda resursa kompanije potrebno je mogude ispisati sve stanove i 
 posjeduje. Pri izradi rješenja primijeniti polimorfizam.
 
 */
-namespace Tut2PRzad2
+namespace Tut2zad2
 {
+    enum Lokacija { Gradsko = 1, Prigradsko = 2 };
+
     class Program
     {
-        enum Lokacija { Gradsko = 1, Prigradsko = 2 };
+        
 
-        /// <summary>
-        /// Interface Istan
-        /// </summary>
-        interface IStan
-        {
-            // int BrojKvadrata { get; set; }
-            //Lokacija Lokacija { get; set; }
-            //bool ImaInternetKonekcije { get; set; }
-            void Ispisi();
-            double ObracunajCijenuNajma();
-        }
-        /// <summary>
-        /// abstraktna klasa Stan
-        /// </summary>
-        abstract class Stan : IStan
-        {
-            // atributi abstraktne klase sa njihovih osobinama
-            int brojKvadrata;
-
-            public int BrojKvadrata
-            {
-                get { return brojKvadrata; }
-                set { brojKvadrata = value; }
-            }
-            Lokacija lokacija;
-
-            public Lokacija Lokacija
-            {
-                get { return lokacija; }
-                set { lokacija = value; }
-            }
-            bool imaInternetKonekcije;
-
-            public bool ImaInternetKonekcije
-            {
-                get { return imaInternetKonekcije; }
-                set { imaInternetKonekcije = value; }
-            }
-
-            //abstraktne metode klase Stan
-            public abstract void Ispisi();
-            public abstract double ObracunajCijenuNajma();
-
-
-        }
-        class NenamjestenStan : Stan
-        {
-            public override void Ispisi()
-            {
-                Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Nenamjesten " + ((ImaInternetKonekcije) ? "Da" : "Ne"));
-            }
-            public override double ObracunajCijenuNajma()
-            {
-                double cijena = (Lokacija == Lokacija.Gradsko) ? 200 : 150;
-                cijena += BrojKvadrata;
-                if (ImaInternetKonekcije)
-                {
-                    cijena += 0.02f * cijena;
-                }
-                return cijena;
-            }
-
-            //Konstruktor
-            public NenamjestenStan(int brojKvadrata, Lokacija lokacija, bool imaInternet)
-            {
-                BrojKvadrata = brojKvadrata;
-                Lokacija = lokacija;
-                ImaInternetKonekcije = imaInternet;
-            }
-        }
-        class NamjestenStan : Stan
-
-        {
-            double cijenaNamjestana;
-            public double CijenaNamjestaja
-            {
-                get { return cijenaNamjestana; }
-                set { value = cijenaNamjestana; }
-            }
-            int brojKucanskihAparata;
-            public double BrojKucanskihAparata
-            {
-                get { return brojKucanskihAparata; }
-                set { value = brojKucanskihAparata; }
-            }
-
-            public NamjestenStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, double cijena, int brojApartmana)
-            {
-                BrojKvadrata = brojKvadrata;
-                Lokacija = lokacija;
-                ImaInternetKonekcije = imaInternet;
-                this.cijenaNamjestana = cijena;
-                this.brojKucanskihAparata = brojApartmana;
-            }
-
-            public override void Ispisi()
-            {
-                Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Namjesten " +
-               ((ImaInternetKonekcije) ? "Da" : "Ne") + " " + CijenaNamjestaja + " " +
-               BrojKucanskihAparata);
-            }
-            public override double ObracunajCijenuNajma()
-            {
-                double cijena = (Lokacija == Lokacija.Gradsko) ? 200 : 150;
-                cijena += BrojKvadrata;
-                if (ImaInternetKonekcije)
-                {
-                    cijena += 0.01f * cijena;
-                }
-                if (brojKucanskihAparata < 3)
-                {
-                    cijena += 0.01f * CijenaNamjestaja * BrojKucanskihAparata;
-                }
-                else
-                {
-                    cijena += 0.02f * CijenaNamjestaja * BrojKucanskihAparata;
-                }
-                return cijena;
-            }
-        }
-
-        class LuksuzniStan : Stan
-        {
-            Uposlenik osoba;
-            public LuksuzniStan(int brojKvadrata, Lokacija lokacija, bool imaInternet, Uposlenik pOsoba)
-            {
-                BrojKvadrata = brojKvadrata;
-                Lokacija = lokacija;
-                ImaInternetKonekcije = imaInternet;
-                osoba = pOsoba;
-            }
-
-            public override void Ispisi()
-            {
-                Console.WriteLine(BrojKvadrata + " " + Lokacija + " " + " Luksuzan " + ((ImaInternetKonekcije) ? "Da" : "Ne"));
-            }
-            public override double ObracunajCijenuNajma()
-            {
-                double cijena = 1500+ (double)osoba.IznosPlacanja();//osnovna cijena luksuznog stana
-                if ((ImaInternetKonekcije))
-                {
-                    cijena += 0.02f * cijena;
-                }
-                return cijena;
-            }
-        }
-        interface IPlacanje
-        {
-            decimal IznosPlacanja();
-        }
-
-        public class Datum
-        {
-            int dan;
-            public int Dan
-            {
-                get { return dan; }
-                private set
-                {
-                    /*if (dan > 0 && dan <= 31)*/ dan = value;
-                    /*else
-                    {
-                        Console.WriteLine("Ne validan dan({0}) postavi na 1.", value);
-                        dan = 1;
-                    }*/
-                } 
-            }
-            int mjesec;
-            public int Mjesec
-            {
-                get { return mjesec; }
-               private set
-                {
-                    if (value > 0 && value <= 12)
-                    {
-                        mjesec = value;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ne validan mjesec({0}) postavi na 1.", value);
-                        mjesec = 1;
-
-                    }
-
-                }
-            }
-            int godina;
-            public int Godina
-            {
-                get { return godina; }
-                private set { godina = value; }
-            }
-
-            // konstruktor: koristi get i set za validaciju dana,godine i mjeseca
-            public Datum(int dan, int mjesec, int godina)
-            {
-                Dan = dan;
-                Mjesec = mjesec;
-                Godina = godina;
-                
-            }
-
-            public string ToString()
-            {
-                return string.Format("{0}/{1}/{2}", Dan, Mjesec, Godina);
-            }
-
-        }
-        public abstract class Uposlenik : IPlacanje
-        {
-            private string ime;
-            public string Ime
-            {
-                get { return ime; }
-                private set { ime = value; }
-            }
-            private string prezime;
-            public string Prezime
-            {
-                get { return prezime; }
-                private set { prezime = value; }
-            }
-
-
-            //konstruktor za uposlenik
-            public Uposlenik(string ime, string prezime)
-            {
-                Ime = ime;
-                Prezime = prezime;
-
-            }
-            public abstract override string ToString();
-            public abstract decimal IznosPlacanja();
-
-
-            public class Batler : Uposlenik
-            {
-
-                Datum datumUposlenja;
-                int godineIskustva;
-                public int GodineIskustva
-                {
-                    get { return godineIskustva; }
-                    set { godineIskustva = value; }
-                }
-                decimal mjesecnaPlata;
-
-                public decimal MjesecnaPlata
-                {
-                    get { return mjesecnaPlata; }
-                    set { mjesecnaPlata = value; }
-                }
-                public Batler(string pime, string pprezime, Datum pDatumUposlenja, decimal mjesecnaPlata, int godineIskustva) : base(pime, pprezime)
-                {
-                    GodineIskustva = godineIskustva;
-                    datumUposlenja = pDatumUposlenja;
-                    MjesecnaPlata = mjesecnaPlata;
-                }
-
-                public override string ToString()
-                {
-                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
-
-                }
-                public override decimal IznosPlacanja()
-                {
-                    return MjesecnaPlata;
-                }
-            }
-            public class Kuhar : Uposlenik
-            {
-                string[] jela = new string[3] { "jelo1", "jelo2", "jelo3" };
-
-                //indekser
-
-                public string this[int indeks]
-                {
-                    get { return jela[indeks]; }
-                    set { jela[indeks] = value; }
-                }
-
-                Datum datumUposlenja;
-                decimal mjesecnaPlata;
-
-                public decimal MjesecnaPlata
-                {
-                    get { return mjesecnaPlata; }
-                    set { mjesecnaPlata = value; }
-                }
-
-                public Kuhar(string pime, string pprezime, Datum pDatumUposlenja, decimal mjesecnaPlata) : base(pime, pprezime)
-                {
-
-                    datumUposlenja = pDatumUposlenja;
-                    MjesecnaPlata = mjesecnaPlata;
-
-                }
-                public override string ToString()
-                {
-                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
-
-                }
-                public override decimal IznosPlacanja()
-                {
-                    return MjesecnaPlata;
-                }
-            }
-            public class Vrtlar : Uposlenik
-            {
-
-                Datum datumUposlenja;
-                Stan stan = new NenamjestenStan(30, Lokacija.Prigradsko, true);
-                decimal mjesecnaPlata;
-                public decimal MjesecnaPlata
-                {
-                    get { return mjesecnaPlata; }
-                    set { mjesecnaPlata = value; }
-                }
-                public Vrtlar(string pime, string pprezime, Datum pDatumUposlenja, decimal pMjesecnaPlata) : base(pime, pprezime)
-                {
-
-                    datumUposlenja = pDatumUposlenja;
-                    MjesecnaPlata = pMjesecnaPlata;
-                }
-                public override string ToString()
-                {
-                    return string.Format("{0} {1} Datum uposlenja : {2} Mjesecna plata : {3}", Prezime, Ime, datumUposlenja, MjesecnaPlata);
-
-                }
-                public override decimal IznosPlacanja()
-                {
-                    return MjesecnaPlata;
-                }
-            }
-        }
 
         static void Main(string[] args)
         {
             Datum datum1 = new Datum(12, 10, 2015);
             Datum datum2 = new Datum(13, 10, 2015);
             Datum datum3 = new Datum(15, 10, 2015);
-            
-            Uposlenik Batler= new Uposlenik.Batler("batlerIme", "batlerPrezime", datum1, 1200, 15);
-            Uposlenik Vrtlar= new Uposlenik.Vrtlar("vrtlarIme", "vrtlarPrezime", datum2, 800);
-            Uposlenik Kuhar= new Uposlenik.Kuhar("kuharIme", "kuharPrezime", datum3, 1600);
+
+            Uposlenik Batler = new Batler("batlerIme", "batlerPrezime", datum1, 1200, 15);
+            Uposlenik Vrtlar = new Vrtlar("vrtlarIme", "vrtlarPrezime", datum2, 800);
+            Uposlenik Kuhar = new Kuhar("kuharIme", "kuharPrezime", datum3, 1600);
 
             Stan[] stanovi = new Stan[7];
             stanovi[0] = new NenamjestenStan(50, Lokacija.Gradsko, true);
             stanovi[1] = new NenamjestenStan(80, Lokacija.Prigradsko, true);
             stanovi[2] = new NamjestenStan(40, Lokacija.Prigradsko, true, 2000, 2);
             stanovi[3] = new NamjestenStan(80, Lokacija.Gradsko, false, 3000, 6);
-            stanovi[4] = new LuksuzniStan(200, Lokacija.Gradsko, true,Batler);
+            stanovi[4] = new LuksuzniStan(200, Lokacija.Gradsko, true, Batler);
             stanovi[5] = new LuksuzniStan(250, Lokacija.Gradsko, true, Kuhar);
             stanovi[6] = new LuksuzniStan(300, Lokacija.Gradsko, true, Vrtlar);
-    Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
+            Console.WriteLine("Površina Lokacija Namješten Internet Vrijednost namještaja Broj aparata");
 
 
-    foreach (Stan stan in stanovi)
-    {
-        stan.Ispisi();
-    }
-    int minPovrsina = 0;
-    int maxPovrsina = 0;
-    Console.WriteLine("Unesite minimalnu zeljenu povrsinu");
-    while (!Int32.TryParse(Console.ReadLine(), out minPovrsina) || minPovrsina < 0)
-    {
-        Console.WriteLine("Unos nije ispravan");
-    }
-    Console.WriteLine("Unesite maksimalnu zeljenu povrsinu");
-    while (!Int32.TryParse(Console.ReadLine(), out maxPovrsina) || maxPovrsina < 0)
-    {
-        Console.WriteLine("Unos nije ispravan");
-    }
-    foreach (Stan stan in stanovi)
-    {
-        if (stan.BrojKvadrata >= minPovrsina && stan.BrojKvadrata <= maxPovrsina)
-        {
-            stan.Ispisi();
-            Console.WriteLine("Ukupna cijena najma stana je {0:F2} ", stan.ObracunajCijenuNajma());
+            foreach (Stan stan in stanovi)
+            {
+                stan.Ispisi();
+            }
+            int minPovrsina = 0;
+            int maxPovrsina = 0;
+            Console.WriteLine("Unesite minimalnu zeljenu povrsinu");
+            while (!Int32.TryParse(Console.ReadLine(), out minPovrsina) || minPovrsina < 0)
+            {
+                Console.WriteLine("Unos nije ispravan");
+            }
+            Console.WriteLine("Unesite maksimalnu zeljenu povrsinu");
+            while (!Int32.TryParse(Console.ReadLine(), out maxPovrsina) || maxPovrsina < 0)
+            {
+                Console.WriteLine("Unos nije ispravan");
+            }
+            foreach (Stan stan in stanovi)
+            {
+                if (stan.BrojKvadrata >= minPovrsina && stan.BrojKvadrata <= maxPovrsina)
+                {
+                    stan.Ispisi();
+                    Console.WriteLine("Ukupna cijena najma stana je {0:F2} ", stan.ObracunajCijenuNajma());
+                }
+            }
+
+            //zaustavlja konzolu
+            Console.ReadLine();
+
         }
     }
-    Console.ReadLine();
-
-
-}
-    }
+    
 }
