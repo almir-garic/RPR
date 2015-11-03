@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 //Autor : Almir Garic(almir.garic.1992@ieee.org)
 /*Zadatak 3
-Razviti konzolno programsko rješenje koje de omoditi evidenciju i upravljanje gasova. Postoje četiri tipa
+Razviti konzolno programsko rješenje koje ce omoguciti evidenciju i upravljanje gasova. Postoje četiri tipa
 gasova: G1, G2, G3 i G4. Svaki tip gasa ima boju (crvena, žuta, plava i zelena), okus, miris, temperaturu i
 pritisak. Gasovi tipova G1 i G3 su nestabilni i potrebno je omoguditi provjeru njihove stabilnosti i
 korekciju temperature. G1 je stabilan ako je temperatura manja od 100 C (Celzijus) stepeni a G3 je
@@ -24,10 +24,12 @@ primijentiti polimorfizam. Prije odabira kontrole gasova omoguditi unos n gasova
 */
 namespace Tut2zad3
 {
+    enum TipBoje { crvena=1,zuta=2,plava=3,zelena=4};
     class Program
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

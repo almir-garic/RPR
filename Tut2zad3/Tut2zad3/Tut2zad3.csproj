@@ -43,8 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="G1.cs" />
+    <Compile Include="G2.cs" />
+    <Compile Include="G3.cs" />
+    <Compile Include="G4.cs" />
+    <Compile Include="Miris.cs" />
+    <Compile Include="Okus.cs" />
+    <Compile Include="Pritisak.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Temperatura.cs" />
+    <Compile Include="TipGasa.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
