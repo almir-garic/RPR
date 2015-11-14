@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tut2zad3
 {
-    class TipGasa
+    class abstract TipGasa
     {
+
+
     }
 }

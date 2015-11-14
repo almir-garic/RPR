@@ -9,12 +9,12 @@ namespace Tut2zad3
     class G1:TipGasa
     {
         TipBoje boja;
-        
+        bool stabilnost = false;
         //property
         public TipBoje Boja
         {
             get { return boja; }
-            get { boja = ValueType; }
+            set { boja = ValueType; }
         
         }
     }

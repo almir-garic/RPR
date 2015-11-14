@@ -14,6 +14,6 @@ namespace Tut2zad3
         public TipBoje Boja
         {
             get { return boja; }
-            get { boja = ValueType; }
+            set { boja = ValueType; }
         }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 /*Zadatak 3
 Razviti konzolno programsko rješenje koje ce omoguciti evidenciju i upravljanje gasova. Postoje četiri tipa
 gasova: G1, G2, G3 i G4. Svaki tip gasa ima boju (crvena, žuta, plava i zelena), okus, miris, temperaturu i
-pritisak. Gasovi tipova G1 i G3 su nestabilni i potrebno je omoguditi provjeru njihove stabilnosti i
+pritisak. Gasovi tipova G1 i G3 su nestabilni i potrebno je omoguciti provjeru njihove stabilnosti i
 korekciju temperature. G1 je stabilan ako je temperatura manja od 100 C (Celzijus) stepeni a G3 je
 stabilan ako nije crvene boje i ako je temperature manja od 150 C stepeni. Korekcija temperature za G1
 tipove se vrši tako što se temperature smanji za 30 C stepeni a G3 za 50. Tipovi G1, G2 I G4 imaju
@@ -20,7 +20,8 @@ svim gasovima. Odabirom toksičnih ispisuju se samo toksični i pored osnovnih i
 njihovoj toksičnosti. Odabirom nestabilnih ispisuju se samo nestabilni i pored osnovnih ispisuje se i
 informacija o stanju stabilonsti pri čemu se daje opcija korisniku da odabere gas čija de se korekcija
 obaviti ili da se upiše slovo “b” čime de se vratiti na prvi odabir gasova. Izvršiti dekompoziciju klasa i
-primijentiti polimorfizam. Prije odabira kontrole gasova omoguditi unos n gasova.
+primijentiti polimorfizam. Prije odabira kontrole gasova omoguditi unos n gasova.
+
 */
 namespace Tut2zad3
 {
