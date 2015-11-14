@@ -1,4 +1,6 @@
 # RPR
 razvojProgramskihRjesenja
-
-#Rjesenja zadataka 2015/2016.g#
+--------------------------------
+@Visual studio (C#)
+--------------------------------
+Rjesenja zadataka 2015/2016.g#
