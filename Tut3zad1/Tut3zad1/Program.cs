@@ -17,7 +17,8 @@ Sljedeći primjer demonstrira rad sa listama čiji su elementi klase. Ovaj primj
 pojedinosti koje su u nastavku obrazložene.
 Implementirane su dvije jednostavne klase, Osoba i Glumac, pri čemu klasa Glumac naslijeđuje klasu
 Osoba. U okviru klase Osoba nalazi se virtuelna metoda za ispis, koja je reimplementirana u klasi
-Glumac.*/
+Glumac.
+*/
 namespace Tut3zad1
 {
     class Program
@@ -66,7 +67,8 @@ namespace Tut3zad1
                 foreach (string s in _TopFilmovi)
                     Console.Write(s + (_TopFilmovi.Last().Equals(s) ? Environment.NewLine : ", "));
             }
-        }
+        }
+
         static void Main(string[] args)
         {
             List<Osoba> osobe = new List<Osoba>();
@@ -91,7 +93,8 @@ namespace Tut3zad1
                 Prezime = "Washington",
                 Starost = 60,
                 TopFilmovi = new List<string>() { "The Equalizer", "Man on Fire", "SafeHouse" }
- });            Console.WriteLine("Osobe sortirane po starosti");
+ });
+            Console.WriteLine("Osobe sortirane po starosti");
             osobe.Sort((x, y) => (x.Starost - y.Starost));
             
             foreach(Osoba o in osobe)
@@ -99,6 +102,24 @@ namespace Tut3zad1
                 o.Ispisi();
             }
             Console.WriteLine("Osobe sortirane po starosti <60");
+            foreach (Osoba o in osobe.Where(o => o.Starost < 60))
+            {
+                o.Ispisi();
+            }
+            Console.WriteLine("Prosjecan broj godina : "+ osobe.Average(o => o.Starost));
+            Console.WriteLine("Broj osoba mladjih od 60 godina : " + osobe.Count(o => o.Starost < 60));
+            Console.WriteLine("Najduze prezime : " + osobe.Max(o => o.Prezime));
+            //neophodno je eksplicitno pretvoriti bazi u izvedeni kako bi se primijenile njegove metode
+            foreach(Osoba o in osobe)
+            {
+                Glumac g = o as Glumac;
+                if (g!= null){
+                    Console.WriteLine(g.Ime + " " + g.Prezime + " " + ": " + g.TopFilmovi.FirstOrDefault());
+                }
+                Console.ReadLine();
+            }
+
+
         }
     }
 }
