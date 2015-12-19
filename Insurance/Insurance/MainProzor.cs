@@ -27,12 +27,7 @@ namespace Insurance
 
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolStripContainer1_BottomToolStripPanel_Click(object sender, EventArgs e)
+        private void MainProzor_Load(object sender, EventArgs e)
         {
 
         }
