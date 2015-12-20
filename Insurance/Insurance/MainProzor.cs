@@ -38,5 +38,10 @@ namespace Insurance
             f.MdiParent = this;
             f.Show();
         }
+
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
